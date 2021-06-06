@@ -36,4 +36,4 @@ Assistant professor [Carlos Caballero](https://www.carloscaballero.io/about/)
 ## Author
 Francesc Brugarolas, [VanillaJS repo](https://github.com/fcesc-code/vanillaJS)\
 \
-April 2021
+June 2021
