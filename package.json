@@ -1,19 +1,36 @@
 {
-  "name": "wines-server",
-  "version": "1.0.0",
-  "description": "",
+  "name": "vinos-backend",
+  "description": "Aplicación de backend para Vinoteca",
+  "version": "0.0.0",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "private": true,
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.2"
   },
   "devDependencies": {
     "cors": "^2.8.5"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fcesc-code/vinos-back.git"
+  },
+  "keywords": [
+    "Javacript",
+    "Node",
+    "UOC",
+    "Express"
+  ],
+  "author": {
+    "name": "Francesc Brugarolas"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fcesc-code/vinos-back/issues"
+  },
+  "homepage": "https://github.com/fcesc-code/vinos-back#readme"
 }
