@@ -8,6 +8,7 @@ Subject: Front-end with frameworks JS I. June 2021. \
 This is a simple back-end application for this other [project](https://github.com/fcesc-code/vinos-front#readme).
 
 ## Endpoints
+### wine routes
 
 | route | method | action |
 | --- | --- | --- |
@@ -21,6 +22,13 @@ This is a simple back-end application for this other [project](https://github.co
 | /api/wine/grapes/:name | get | returns all wines with a given grapes type |
 | /api/wine/region/:name | get | returns all wines of a given region |
 | /api/wine/country/:name | get | returns all wines of a given country |
+
+### user routes
+
+| route | method | action |
+| --- | --- | --- |
+| /api/user/login | post | signs in a user with a given token |
+| /api/user/register | post | signs up a user with a given token |
 
 ## Repo
 A Git repository can be found in this Github [repo](https://github.com/fcesc-code/vinos-back.git).
