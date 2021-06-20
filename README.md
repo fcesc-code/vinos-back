@@ -32,6 +32,7 @@ A Git repository can be found in this Github [repo](https://github.com/fcesc-cod
 - [chalk](https://github.com/chalk/chalk#readme) to improve console messages in backend server
 - [body-parser](https://github.com/expressjs/body-parser#readme) as middleware for parsing the body of http requests
 - [cors](https://github.com/expressjs/cors#readme) as middleware to allow cors in express
+- [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken#readme) to use JSON Web tokens for authentication
 - [supertest](https://github.com/visionmedia/supertest#readme) to test the express router
 - [mocha](https://mochajs.org/) as test runner
 - [sinon](https://sinonjs.org/) for spies, stubs and mocks
