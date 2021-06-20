@@ -7,6 +7,20 @@ by [Universitat Oberta de Catalunya](http://uoc.edu). \
 Subject: Front-end with frameworks JS I. June 2021. \
 This is a simple back-end application for this other [project](https://github.com/fcesc-code/vinos-front#readme).
 
+## Endpoints
+
+| route | method | action |
+| /api/wine/ | get | returns a list of all wines |
+| /api/wine/ | post | creates a new wine with the object attached to request.body |
+| /api/wine/:id | get | returns a wine with the given id |
+| /api/wine/:id | patch | updates the quantityInCart field of a wine with a given id |
+| /api/wine/:id | delete | deletes a wine with a given id |
+| /api/wine/year/:name | get | returns all wines of a given year, format YYYY |
+| /api/wine/rating/:value | get | returns all wines of a given rating (1 to 5), format integer |
+| /api/wine/grapes/:name | get | returns all wines with a given grapes type |
+| /api/wine/region/:name | get | returns all wines of a given region |
+| /api/wine/country/:name | get | returns all wines of a given country |
+
 ## Repo
 A Git repository can be found in this Github [repo](https://github.com/fcesc-code/vinos-back.git).
 
