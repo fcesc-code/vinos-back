@@ -1,12 +1,12 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
-const router = express.Router();
+const userRouter = express.Router();
 
 const users = {
   mockUser: 'mockPassword123'
 };
 
-router.post("/login", (req, res) => {
+userRouter.post("/login", (req, res) => {
   const user = req.body;
 
   if (!users[user.username] || users[user.username] !== user.password) {
@@ -18,7 +18,7 @@ router.post("/login", (req, res) => {
   });
 });
 
-router.post("/register", (req, res) => {
+userRouter.post("/register", (req, res) => {
   const user = req.body;
   if (users[user.username]) {
     return res.status(400).json({ msg: "User already exists, please login." });
@@ -29,4 +29,4 @@ router.post("/register", (req, res) => {
   });
 });
 
-module.exports = router;
+module.exports = userRouter;
