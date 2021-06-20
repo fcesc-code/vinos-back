@@ -6,51 +6,44 @@ const mockServer = express();
 mockServer.use(express.urlencoded({ extended: false}));
 
 const wineRoutes = require('./wines');
-const { join } = require('./winedata');
 
-const ROOT_ROUTES = '/wine';
+const ROOT_ROUTES = '/api/wine';
 mockServer.use(`${ROOT_ROUTES}`, wineRoutes);
 
 describe('Test suit for wine routes', () => {
 
-  describe('test get requests', () => {
-    it('Test / route', ()=>{
-      request(mockServer)
-        .get(`${ROOT_ROUTES}/`)
-        .expect('content-type', /json/)
-        .expect(200)
-    })
-  
+  describe('test get requests', () => { 
     const testRoutes = [
-      { route: `${ROOT_ROUTES}/3`, expected: 200, contentType: /json/ },
-      { route: `${ROOT_ROUTES}/89`, expected: 400, contentType: /json/ },
-      { route: `${ROOT_ROUTES}/country/France`, expected: 200, contentType: /json/ },
-      { route: `${ROOT_ROUTES}/country/none`, expected: 400, contentType: /json/ },
-      { route: `${ROOT_ROUTES}/grapes/Syrah`, expected: 200, contentType: /json/ },
-      { route: `${ROOT_ROUTES}/grapes/none`, expected: 400, contentType: /json/ },
-      { route: `${ROOT_ROUTES}/year/2009`, expected: 200, contentType: /json/ },
-      { route: `${ROOT_ROUTES}/year/2023`, expected: 400, contentType: /json/ },
-      { route: `${ROOT_ROUTES}/region/Washington`, expected: 200, contentType: /json/ },
-      { route: `${ROOT_ROUTES}/region/somewhere`, expected: 400, contentType: /json/ },
-      { route: `${ROOT_ROUTES}/rating/4`, expected: 200, contentType: /json/ },
-      { route: `${ROOT_ROUTES}/rating/x`, expected: 400, contentType: /json/ }
+      { route: `${ROOT_ROUTES}/`, expected: 200, testType: 'success', contentType: /json/ },
+      { route: `${ROOT_ROUTES}/3`, expected: 200, testType: 'success', contentType: /json/ },
+      { route: `${ROOT_ROUTES}/89`, expected: 400, testType: 'fail', contentType: /json/ },
+      { route: `${ROOT_ROUTES}/country/France`, expected: 200, testType: 'success', contentType: /json/ },
+      { route: `${ROOT_ROUTES}/country/none`, expected: 400, testType: 'fail', contentType: /json/ },
+      { route: `${ROOT_ROUTES}/grapes/Syrah`, expected: 200, testType: 'success', contentType: /json/ },
+      { route: `${ROOT_ROUTES}/grapes/none`, expected: 400, testType: 'fail', contentType: /json/ },
+      { route: `${ROOT_ROUTES}/year/2009`, expected: 200, testType: 'success', contentType: /json/ },
+      { route: `${ROOT_ROUTES}/year/2023`, expected: 400, testType: 'fail', contentType: /json/ },
+      { route: `${ROOT_ROUTES}/region/Washington`, expected: 200, testType: 'success', contentType: /json/ },
+      { route: `${ROOT_ROUTES}/region/somewhere`, expected: 400, testType: 'fail', contentType: /json/ },
+      { route: `${ROOT_ROUTES}/rating/4`, expected: 200, testType: 'success', contentType: /json/ },
+      { route: `${ROOT_ROUTES}/rating/x`, expected: 400, testType: 'fail', contentType: /json/ }
     ]
   
-    for (let route of testRoutes){
-      it('Test /:id route success', ()=>{
+    for (let testRoute of testRoutes){
+      it(`Test ${testRoute.route} route: ${testRoute.testType} expected`, ()=>{
         request(mockServer)
-          .get(route.route)
-          .expect('content-type', route.contentType)
-          .expect(route.expected)
+          .get(testRoute.route)
+          .expect('content-type', testRoute.contentType)
+          .expect(testRoute.expected)
       })
     }
 
+    // it('Test / route', ()=>{
+    //   request(mockServer)
+    //     .get(`${ROOT_ROUTES}/`)
+    //     .expect('content-type', /json/)
+    //     .expect(200)
+    // })
   })
 
-  describe('')
-
-})
-
-j.eloisanchez@gmaildotcom
-
-Factory Pal Gmbh
+});

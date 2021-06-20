@@ -1,4 +1,4 @@
-module.exports = [
+const WINEDATA = [
   {
       "_id": 1,
       "name": "CHATEAU DE SAINT COSME",
@@ -672,3 +672,5 @@ module.exports = [
       "imageUrl": "wine_example.png"
   }
 ]
+
+module.exports = WINEDATA;

@@ -1,10 +1,9 @@
 const express = require('express');
-const router = express.Router();
+const wineRouter = express.Router();
 
-const wines = require('/winedata');
-console.log('HERE', wines);
+const wines = require('./WINEDATA');
 
-router.get('/', (req, res) => {
+wineRouter.get('/', (req, res) => {
   const query = (req.query['q'] || '').toLowerCase();
   if (query) {
     const foundWines = wines.filter(
@@ -15,20 +14,20 @@ router.get('/', (req, res) => {
   return res.status(200).json(wines);
 });
 
-router.get('/:code', (req, res) => {
-  const wineCode = +req.params.code;
-  const foundWine = wines.find( ({ _id }) => _id === wineCode);
+wineRouter.get(`/:code`, (req, res) => {
+  const wineParameter = +req.params.code;
+  const filteredWines = wines.find( ({ _id }) => +_id === wineParameter);
 
-  return (foundWine) 
-    ? res.status(200).json(foundWine)
-    : res.status(400).json({msg: `Wine with code ${wineCode} not found!`});
+  return (filteredWines) 
+    ? res.status(200).json(filteredWines)
+    : res.status(400).json({msg: `Wine with id: ${wineParameter} not found!`});
 });
 
 function routerWithParams( parameter ){
   return (
-      router.get(`/${parameter}/:value`, (req, res) => {
+      wineRouter.get(`/${parameter}/:value`, (req, res) => {
       const wineParameter = String(req.params.value);
-      const filteredWines = wines.find( wine => String(wine[parameter]) === wineParameter);
+      const filteredWines = wines.filter( wine => String(wine[parameter]) === wineParameter);
 
       return (filteredWines) 
         ? res.status(200).json(filteredWines)
@@ -43,7 +42,7 @@ routerWithParams('rating');
 routerWithParams('region');
 routerWithParams('grapes');
 
-router.post('/', (req, res) => {
+wineRouter.post('/', (req, res) => {
   const wine = req.body;
   if (!wine._id) {
     wine = ({ ...wine, quantityInCart: 0, _id: wines.length + 1})
@@ -58,7 +57,7 @@ router.post('/', (req, res) => {
       .json(wine);
 });
 
-router.patch('/:id', (req, res) => {
+wineRouter.patch('/:id', (req, res) => {
   const wineId = +req.params._id;
   const foundWine = wines.find(({ _id }) => _id === wineId);
   if (foundWine) {
@@ -74,14 +73,11 @@ router.patch('/:id', (req, res) => {
       .json({ msg: `Wine with id ${wineId} not found.` });
 });
 
-router.delete('/:id', (req, res) => {
+wineRouter.delete('/:id', (req, res) => {
   const wineId = +req.params._id;
   newWines = [ ...wines ].filter(({ _id }) => _id !== wineId);
   wines = newWines;
   return res.status(200).json({ msg: `Wine with id:${wineId} successfully deleted.` })
 })
 
-module.exports = router;
-
-// comprobar con postman las rutas
-// realizar testing
+module.exports = wineRouter;
