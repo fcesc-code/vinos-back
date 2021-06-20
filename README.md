@@ -53,7 +53,7 @@ A Git repository can be found in this Github [repo](https://github.com/fcesc-cod
 - [HTML](https://html.spec.whatwg.org/)
 
 ## Quality gate
-[Mocha](https://mochajs.org/): 17 tests passed \
+[Mocha](https://mochajs.org/): 20 tests passed | 54.24% lines coverage \
 [Sonarqube](https://www.sonarqube.org/): 0 bugs | 0 code smells | 0 vulnerabilities | 0 security hotspots | 0% code duplication (excluding duplicated API file requested to separate deliverables) \
 
 ## Development server

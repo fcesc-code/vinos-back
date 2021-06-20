@@ -66,7 +66,7 @@
   "nyc": {
     "exclude": [
       "**/*.spec.js",
-      "WINEDATA.js"
+      "**/WINEDATA.js"
     ]
   }
 }
