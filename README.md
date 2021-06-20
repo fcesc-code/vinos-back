@@ -10,6 +10,7 @@ This is a simple back-end application for this other [project](https://github.co
 ## Endpoints
 
 | route | method | action |
+| --- | --- | --- |
 | /api/wine/ | get | returns a list of all wines |
 | /api/wine/ | post | creates a new wine with the object attached to request.body |
 | /api/wine/:id | get | returns a wine with the given id |
