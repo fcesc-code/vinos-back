@@ -3,10 +3,14 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
 
+const wines = require('./wines');
+
 app.use(cors());
-app.use(bodyParser());
+app.use(bodyParser.json());
 app.get('/', (_, res) => res.send('Hello World!'));
 
-app.use('/api/wine', require('./wines'));
+// app.use('/api/user', require('./user'));
+
+app.use('/api/wine', wines);
 
 app.listen(3000, () => console.log('App Server listening on port 3000!'));
