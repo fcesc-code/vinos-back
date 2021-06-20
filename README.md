@@ -51,11 +51,14 @@ A Git repository can be found in this Github [repo](https://github.com/fcesc-cod
 Server opens at http://localhost:3010/.
 
 ## Running unit tests
-npm run test -> run all tests and generate coverage report
-npm run test-watch -> run all tests and watch for changes
-npm run test-single \[yourTestFile\] -> run a single test file
-npm run test-single-watch \[yourTestFile\] -> run a single test file and watch for changes
-npm run test-clean -> removes all coverage report files and directories
+
+| command | action |
+| --- | --- |
+| npm run test | run all tests and generate coverage report |
+| npm run test-watch | run all tests and watch for changes |
+| npm run test-single \[yourTestFile\] | run a single test file |
+| npm run test-single-watch \[yourTestFile\] | run a single test file and watch for changes |
+| npm run test-clean | removes all coverage report files and directories |
 
 ## Credits
 Assistant professor [Carlos Caballero](https://www.carloscaballero.io/about/)
