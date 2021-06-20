@@ -1,7 +1,8 @@
 const express = require('express');
 const wineRouter = express.Router();
 
-const wines = require('./WINEDATA');
+const winesData = require('./WINEDATA');
+let wines = [ ...winesData ];
 
 wineRouter.get('/', (req, res) => {
   const query = (req.query['q'] || '').toLowerCase();
@@ -43,7 +44,7 @@ routerWithParams('region');
 routerWithParams('grapes');
 
 wineRouter.post('/', (req, res) => {
-  const wine = req.body;
+  let wine = req.body;
   if (!wine._id) {
     wine = ({ ...wine, quantityInCart: 0, _id: wines.length + 1})
     wines.push(wine);

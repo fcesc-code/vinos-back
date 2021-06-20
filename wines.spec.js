@@ -5,7 +5,8 @@ const mockServer = express();
 
 mockServer.use(express.urlencoded({ extended: false}));
 
-const wineRoutes = require('./wines');
+const wineRoutes = require('./wineRouter');
+const { expect } = require('chai');
 
 const ROOT_ROUTES = '/api/wine';
 mockServer.use(`${ROOT_ROUTES}`, wineRoutes);
@@ -38,12 +39,77 @@ describe('Test suit for wine routes', () => {
       })
     }
 
-    // it('Test / route', ()=>{
-    //   request(mockServer)
-    //     .get(`${ROOT_ROUTES}/`)
-    //     .expect('content-type', /json/)
-    //     .expect(200)
-    // })
   })
+
+  describe('test post requests', () => { 
+    const NEWWINE = {
+        "_id": 33,
+        "name": "OLMO",
+        "year": 2015,
+        "rating": 4.3,
+        "grapes": "Tempranillo",
+        "country": "Spain",
+        "region": "Rioja",
+        "description": "A strong flavor for a mock wine.",
+        "price": 13.50, 
+        "isOnSale": true, 
+        "quantityInCart": 0, 
+        "foodMatch": [
+      {
+        "name": "Jamón Ibérico",
+        "kcal": 450,
+        "vegan": false,
+        "gluten": false
+      }
+    ], 
+        "imageUrl": "some_wine_example.png"
+    };
+    
+    it(`Test ${ROOT_ROUTES} route: success expected`, ()=>{
+      request(mockServer)
+        .post(`${ROOT_ROUTES}/`)
+        .send( { ...NEWWINE } )
+        .set('Accept', 'application/json')
+        .expect('content-type', /json/)
+        .expect(200, {...NEWWINE})
+        .end( (err, res) => {
+          return (err) ? err : undefined;
+        });
+    })
+  })
+
+  
+  describe('test patch requests', () => {   
+    it(`Test ${ROOT_ROUTES} route: success expected`, ()=>{
+      const patchedData = { _id: 34, quantityInCart: 3 };
+      const expectedMsg = { msg: `Successfully updated cart for wine with id: 34.` };
+
+      request(mockServer)
+        .patch(`${ROOT_ROUTES}/`)
+        .send( patchedData )
+        .set('Accept', 'application/json')
+        .expect('content-type', /json/)
+        .expect(200, expectedMsg)
+        .end( (err, res) => {
+          return (err) ? err : undefined;
+        });
+    })
+  })
+
+  describe('test delete requests', () => {   
+    it(`Test ${ROOT_ROUTES}/3 route: success expected`, ()=>{
+      const expectedMsg = { msg: `Wine with id:3 successfully deleted.` };
+
+      request(mockServer)
+        .delete(`${ROOT_ROUTES}/3`)
+        .set('Accept', 'application/json')
+        .expect('content-type', /json/)
+        .expect(200, expectedMsg)
+        .end( (err, res) => {
+          return (err) ? err : undefined;
+        });
+    })
+  })
+
 
 });

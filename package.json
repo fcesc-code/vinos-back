@@ -6,7 +6,7 @@
   "scripts": {
     "start": "set DEBUG=index,index:* & nodemon index.js",
     "test": "nyc --reporter=lcov --reporter=html --reporter=text mocha **/*spec.js",
-    "test-watch": "mocha -R list -w ./test/**/*.spec.js",
+    "test-watch": "mocha -R list -w **/*.spec.js",
     "test-single": "mocha $1",
     "test-single-watch": "mocha -R list -w $1",
     "clean": "rimraf dist .cache .cache-loader"
