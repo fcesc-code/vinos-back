@@ -9,7 +9,7 @@
     "test-watch": "mocha -R list -w **/*.spec.js",
     "test-single": "mocha $1",
     "test-single-watch": "mocha -R list -w $1",
-    "clean": "rimraf dist .cache .cache-loader"
+    "test-clean": "rimraf coverage .nyc_output"
   },
   "private": true,
   "dependencies": {
