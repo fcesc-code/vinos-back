@@ -1,12 +1,18 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const chalk = require('chalk');
 const cors = require('cors');
 const app = express();
 
+const wineRouter = require('./wineRouter');
+
+const PORT = process.env.PORT || 3010;
+
+app.use(bodyParser.json());
 app.use(cors());
-app.use(bodyParser());
 app.get('/', (_, res) => res.send('Hello World!'));
 
-app.use('/api/wine', require('./wines'));
+// app.use('/api/user', require('./user'));
+app.use('/api/wine', wineRouter);
 
-app.listen(3000, () => console.log('App Server listening on port 3000!'));
+app.listen(PORT, () => console.log(`VINOS backend server | Listening on port ${chalk.blueBright(PORT)}`));
