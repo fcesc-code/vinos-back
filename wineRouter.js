@@ -15,6 +15,18 @@ wineRouter.get('/', (req, res) => {
   return res.status(200).json(wines);
 });
 
+wineRouter.get('/page/:pageNumber', (req, res) => {
+  const page = +req.params.pageNumber;
+  const itemsPerPage = 10;
+  const start = (pageNumber - 1) * itemsPerPage;
+  const end = start + itemsPerPage;
+  const paginatedWines = [ ...wines ].slice( start, end );
+
+  return (paginatedWines) 
+    ? res.status(200).json(paginatedWines)
+    : res.status(400).json({msg: `Wine with id: ${page} not found!`});
+});
+
 wineRouter.get(`/:code`, (req, res) => {
   const wineParameter = +req.params.code;
   const filteredWines = wines.find( ({ _id }) => +_id === wineParameter);
@@ -72,6 +84,23 @@ wineRouter.patch('/:id', (req, res) => {
     : res
       .status(400)
       .json({ msg: `Wine with id ${wineId} not found.` });
+});
+
+wineRouter.patch('/edit/', (req, res) => {
+  let updatedWine = req.body;
+  if (updatedWine._id) {
+    foundWine = wines.find( ({ _id}) => _id === updatedWine._id );
+    for( let prop in foundWine ){
+      foundWine[prop] = updatedWine[prop];
+    }
+  };
+  return (foundWine)
+    ? res
+      .status(200)
+      .json({ msg: `Successfully updated wine with id: ${wine._id}.` })
+    : res
+      .status(400)
+      .json({ msg: `Wine with id ${wineId} not found. Update operation failed.` });
 });
 
 wineRouter.delete('/:id', (req, res) => {
