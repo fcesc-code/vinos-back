@@ -65,10 +65,10 @@ wineRouter.post('/', (req, res) => {
   wine.name = wine.name.trim().toUpperCase();
   const foundWine = wines.findIndex( ({ name }) => name === wine.name );
   if (foundWine === -1) {
-    wine = ({ ...wine, quantityInCart: 0, _id: wines.length + 1})
     const DEFAULT_IMGURL = 'wine_example.png';
     // if( wine.imgUrl.trim() === '' ) wine.imgUrl = DEFAULT_IMGURL;
     wine.imgUrl = DEFAULT_IMGURL;
+    wine = ({ ...wine, quantityInCart: 0, _id: wines.length + 1})
     wines.push(wine);
   };
   return (foundWine !== -1) 
