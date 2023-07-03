@@ -14,7 +14,7 @@
   "private": true,
   "dependencies": {
     "body-parser": "^1.20.2",
-    "chalk": "^5.2.0",
+    "chalk": "^5.3.0",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.0",
     "nodemon": "^2.0.22"
